@@ -6,7 +6,7 @@ on already-trusted iterables and are pure(no side effects , no logging) by desig
 '''
 
 
-from typing import Any , Callable , Iterable , Iterator , TypeVar
+from typing import  Callable , Iterable , Iterator , TypeVar
 import logging
 from functools import reduce
 
@@ -16,7 +16,15 @@ logger = logging.getLogger(__name__)
 T = TypeVar("T")
 
 
-def chunked(iterable : Iterable[T] , size: int) -> Iterator[list[T]] :
+def chunked(iterable : Iterable[T] , size: int) : 
+
+    if size<=0 : 
+        logger.warning("Warning: Size is zero or negative!")
+        raise ValueError("Chunking size is zero or negative")
+
+    return _chunked_impl(iterable , size)
+
+def _chunked_impl(iterable : Iterable[T] , size: int) -> Iterator[list[T]] :
 
     '''
     Split 'iterable' into consecutive chunks of at most 'size' items each.
@@ -35,6 +43,8 @@ def chunked(iterable : Iterable[T] , size: int) -> Iterator[list[T]] :
 
     if size<=0 : 
         logger.warning("Warning: Size is zero or negative!")
+        raise ValueError("Chunking size is zero or negative")
+        
 
     current_chunk = []
 
@@ -73,8 +83,6 @@ def flatten(nested: Iterable[Iterable[T]]) -> Iterator[T]:
             yield item
 
 
-    for item in nested:
-        yield from item
 
 
 
