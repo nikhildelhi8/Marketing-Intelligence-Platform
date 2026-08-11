@@ -28,7 +28,7 @@ def safe_float(value: str , default: float | None = None) -> float | None :
     
 
     try:
-        parsed_float_value = value.strip().strip('$%').replace("," , "")
+        parsed_float_value = value.strip().strip('$%').strip().replace("," , "")
         return float(parsed_float_value)
     
     except ValueError  as e :
@@ -77,25 +77,15 @@ def parse_percentage(value: str, default: float | None = None) -> float | None:
     Returns:
         The parsed fraction as a float, or `default` if parsing fails.
     """
-    if not isinstance(value , str) :
-            logger.warning(
-                f"parse_percentage expected str , got {type(value).__name__}"
-            )
-            return default
 
 
-    try:
-        parsed_percentage_value = value.strip().strip('%')
+    float_percentage  = safe_float(value)
 
-        float_value = safe_float(parsed_percentage_value)
-        if float_value is None:
-            return default
-        else: 
-            return float_value/100
+    if float_percentage is None:
+        logger.warning("parse_percentage has failed to parse the percentage value")
+        return default
     
-    except ValueError as e :
-        logger.warning(f"parse_percentage failed due to {e} ")
-        return default 
+    return float_percentage /100
 
 
     
@@ -113,9 +103,10 @@ def format_currency(value: float) -> str:
 
     """
 
- 
-    """Format a numeric value as a currency string."""
     if value is None or value == "":
+        logger.warning(
+            f"Could not format the currency value {value} , returning $0.00"
+        )
         return "$0.00"
 
     try:
