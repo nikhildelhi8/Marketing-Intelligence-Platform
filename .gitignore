@@ -4,6 +4,5 @@ venv/
 .env
 .vscode/
 data/seed/seeded_dataset.json
-practice.py
 *.egg-info/
 
