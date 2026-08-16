@@ -101,3 +101,23 @@ prematurely").
 - **Status:** currently logs a second message on failure. Revisit whether
   the message should be enriched with context (e.g. which field/column was
   being parsed) rather than just restating that parsing failed.
+
+
+
+
+  ## Phase 2 — Comprehension vs map() Benchmark
+
+**Setup:** Parsed a 1000-item simulated dirty CSV column (mix of clean
+numerics, currency/percent-formatted strings, nulls, and garbage) through
+`safe_float`, comparing:
+- `[safe_float(v) for v in raw_values]` (comprehension)
+- `list(map(safe_float, raw_values))` (map, existing named function, no lambda)
+
+Measured with `timeit.timeit(..., number=100)`, converted to avg ms/run.
+
+**Results:**
+- Comprehension: _10.651__ ms/run
+- map(): __9.5233_ ms/run
+
+**Reasoning:**
+at realistic dataset sizes with a genuinely expensive per-item function like safe_float, comprehension and map() perform close enough to each other that the choice should be driven by readability, not micro-benchmarked speed — and your own data (converging results at higher, more trustworthy sample sizes) is what proves that, rather than contradicts it.

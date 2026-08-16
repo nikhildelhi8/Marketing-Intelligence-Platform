@@ -21,7 +21,7 @@ def safe_float(value: str , default: float | None = None) -> float | None :
     '''
     if not isinstance(value , str) :
         logger.warning(
-              f"safe_float expected str , got {type(value).__name__}"
+              f"safe_float expected str , got for {value} {type(value).__name__}"
         )
         return default
 
