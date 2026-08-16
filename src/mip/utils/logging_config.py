@@ -6,7 +6,7 @@ All other modules should only even call 'logging.getLogger(__name__)'
 and never configure handlers themselves.
 '''
 
-import logging 
+import logging
 from logging.config import dictConfig
 
 
