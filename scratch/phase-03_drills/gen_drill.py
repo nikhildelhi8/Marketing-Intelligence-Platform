@@ -4,7 +4,7 @@ from typing import Iterator
 
 def lazy_sqaures(n : int) -> Iterator[int] : 
 
-    for i in range(1,n):
+    for i in range(1,n+1):
         print("computing: " , i)
         yield i*i
 

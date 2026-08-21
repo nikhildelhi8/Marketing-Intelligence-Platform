@@ -9,7 +9,7 @@ PROJECT_ROOT = CURRENT_FILE_DIR.parents[0]
 
 CSV_PATH = PROJECT_ROOT / "products.csv"
 
-print(CSV_PATH)
+
 
 
 
@@ -30,5 +30,8 @@ def read_products(path: Path) -> Iterator[dict] :
 
 
 if __name__ == "__main__":
+    
+    print(CSV_PATH)
     for product in read_products(Path(CSV_PATH)):
+        
         print(product)

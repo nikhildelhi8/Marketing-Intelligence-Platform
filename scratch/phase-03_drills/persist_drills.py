@@ -29,13 +29,14 @@ def verify_integrity(data: dict[str , Any]) -> int:
     '''    
     count = 0 
 
-    owners_ids = [ item.get("owner_id" , -1) for item in data["owners"]]
+    valid_owner_ids = { owner["id"] for owner in data.get("owners" , [])}
 
-    for pets  in data["pets"]:
+    for pet in data.get("pets" , []) :
 
-        for pet in pets:
-            if pet.get("owner_id") not in owners_ids:
-                count +=1 
+        if pet.get("owner_id") not in valid_owner_ids:
+            count += 1
+
+
 
     return count 
 

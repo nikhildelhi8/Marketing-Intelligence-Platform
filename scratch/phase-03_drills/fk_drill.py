@@ -23,7 +23,7 @@ def generate_pets(n: int, owner_ids: list[str]) -> list[dict[str, Any]]:
     sampled ONLY from owner_ids (never invented).
     """
     return [
-        {"id" : f"pets_{i}" , "owner_id" : random.choice(owner_ids)  , "pet_name" : f"{fake.first_name()}"}
+        {"id" : f"pets_{i}" , "owner_id" : fake.random_element(elements=owner_ids)  , "pet_name" : f"{fake.first_name()}"}
         for i in range(n)
     ]
 
@@ -48,6 +48,9 @@ if __name__ == "__main__":
     owner_ids = [o["id"] for o in owners]
 
     pets = generate_pets(10 , owner_ids) 
+
+    print(owners)
+    print(pets)
 
     dangling = check_dangling_fks(pets , owner_ids)
 
