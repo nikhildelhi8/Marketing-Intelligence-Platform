@@ -1,0 +1,126 @@
+{
+  "owners": [
+    {
+      "id": "owner_0",
+      "name": "Allison Hill"
+    },
+    {
+      "id": "owner_1",
+      "name": "Noah Rhodes"
+    },
+    {
+      "id": "owner_2",
+      "name": "Angie Henderson"
+    },
+    {
+      "id": "owner_3",
+      "name": "Daniel Wagner"
+    },
+    {
+      "id": "owner_4",
+      "name": "Cristian Santos"
+    }
+  ],
+  "pets": [
+    {
+      "id": "pets_0",
+      "owner_id": "owner_2",
+      "pet_name": "Amy"
+    },
+    {
+      "id": "pets_1",
+      "owner_id": "owner_2",
+      "pet_name": "Jeffrey"
+    },
+    {
+      "id": "pets_2",
+      "owner_id": "owner_4",
+      "pet_name": "Bridget"
+    },
+    {
+      "id": "pets_3",
+      "owner_id": "owner_4",
+      "pet_name": "Lisa"
+    },
+    {
+      "id": "pets_4",
+      "owner_id": "owner_0",
+      "pet_name": "Adam"
+    },
+    {
+      "id": "pets_5",
+      "owner_id": "owner_2",
+      "pet_name": "Linda"
+    },
+    {
+      "id": "pets_6",
+      "owner_id": "owner_1",
+      "pet_name": "Helen"
+    },
+    {
+      "id": "pets_7",
+      "owner_id": "owner_2",
+      "pet_name": "Matthew"
+    },
+    {
+      "id": "pets_8",
+      "owner_id": "owner_1",
+      "pet_name": "Eric"
+    },
+    {
+      "id": "pets_9",
+      "owner_id": "owner_2",
+      "pet_name": "Susan"
+    },
+    {
+      "id": "pets_10",
+      "owner_id": "owner_4",
+      "pet_name": "Matthew"
+    },
+    {
+      "id": "pets_11",
+      "owner_id": "owner_0",
+      "pet_name": "Christopher"
+    },
+    {
+      "id": "pets_12",
+      "owner_id": "owner_0",
+      "pet_name": "Colin"
+    },
+    {
+      "id": "pets_13",
+      "owner_id": "owner_3",
+      "pet_name": "Melanie"
+    },
+    {
+      "id": "pets_14",
+      "owner_id": "owner_3",
+      "pet_name": "Cassandra"
+    },
+    {
+      "id": "pets_15",
+      "owner_id": "owner_4",
+      "pet_name": "Lindsay"
+    },
+    {
+      "id": "pets_16",
+      "owner_id": "owner_3",
+      "pet_name": "Jessica"
+    },
+    {
+      "id": "pets_17",
+      "owner_id": "owner_0",
+      "pet_name": "Amanda"
+    },
+    {
+      "id": "pets_18",
+      "owner_id": "owner_4",
+      "pet_name": "Teresa"
+    },
+    {
+      "id": "pets_19",
+      "owner_id": "owner_1",
+      "pet_name": "Nicholas"
+    }
+  ]
+}
