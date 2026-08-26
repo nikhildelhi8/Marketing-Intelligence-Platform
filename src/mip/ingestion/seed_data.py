@@ -20,7 +20,7 @@ Design decisions locked this phase:
 
 from faker import Faker
 from faker.providers import DynamicProvider
-from datetime import date , timedelta
+from datetime import date , datetime
 
 
 
@@ -138,10 +138,6 @@ def build_creator_pool(
     return creator_pool
 
 
-
-
-
-
 def generate_businesses(n: int , seed: int = 42) -> list[dict] :
     '''
     Generate n synthetic Business records via faker : company name , industry and the budget range.
@@ -238,22 +234,39 @@ def build_campaign_pool(
     return campaign_pool
 
 
+def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict: 
 
+    '''
+    Given one parsed CSV row and the full creator pool , select the creator this row/post should be attached to .
 
+    Matching poilicy -- 
+    1) exact match : crator_niche == rows's category and creator_tier == rows's tier(derived via get_tier on the rows follwer count).
 
+    2) Fallback: same niche , tier one band away (adjacent in CREATOR_TIER_BANDS order) in either direction.
 
+    3) Final fallback : niche match only , any tier.
 
+    4) If step 3 still yields zero candidates: raise , dont return None -- every row must land a creator , and a true zero-candidate case means something is wrong witht eh pool itself , not the row 
+    
+    '''
+    row_category = row.get("Category" , "").strip().lower()
+    row_tier = row.get("Influencer_Tier" , "").strip().lower()
 
+    matching_creators_list: list[dict] = [
 
-
+        creator 
+        for creator in creator_pool 
+        if creator.get("creator_niche" , creator.get("niche" , "")).strip().lower() == row_category and creator.get("creator_tier" , creator.get("tier" , "")).strip().lower() == row_tier
+    ]
 
     
 
-    
+
+    matching_creator : dict = fake.random_element(matching_creators_list)
 
     
 
-    
+    return matching_creator
 
 
 
@@ -261,11 +274,16 @@ def build_campaign_pool(
 
 if __name__ == "__main__" : 
 
-   #result=  build_creator_pool(CREATOR_NICHES , 2 , 42 )
-   business_pool = generate_businesses(5 , seed=42)
-   campaign_pool   = build_campaign_pool(business_pool , (4 , 8) , seed =42)
-   print(business_pool)
-   print(campaign_pool)
+    raw_row = {'Post_ID': 'POST_04552', 'Timestamp': datetime(2024, 1, 1, 1, 42), 'Platform': 'Instagram', 'Content_Type': 'Carousel', 'Category': 'Business', 'Likes': 8287, 'Comments': 247, 'Shares': 51, 'Views': 29502, 'Saves': 20, 'Follower_Count': 223080, 'Engagement_Rate': 3.85, 'Hour_of_Day': 1, 'Day_of_Week': 'Monday', 'Hashtag_Count': 16, 'Content_Length': 985, 'Sentiment': 'Positive', 'Influencer_Tier': 'Macro', 'Has_Media': True, 'Is_Verified': False}
+    creator_pool =  build_creator_pool(CREATOR_NICHES , 6 , 42 )
+#    business_pool = generate_businesses(5 , seed=42)
+#    campaign_pool   = build_campaign_pool(business_pool , (4 , 8) , seed =42)
+#    print(business_pool)
+#    print(campaign_pool)
+
+    result = assign_creator_to_row(raw_row , creator_pool)
+    print(result)
+
 
 
 
