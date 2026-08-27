@@ -240,7 +240,7 @@ def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict:
     Given one parsed CSV row and the full creator pool , select the creator this row/post should be attached to .
 
     Matching poilicy -- 
-    1) exact match : crator_niche == rows's category and creator_tier == rows's tier(derived via get_tier on the rows follwer count).
+    1) exact match : crator_niche == rows's category and creator_tier == rows's tier
 
     2) Fallback: same niche , tier one band away (adjacent in CREATOR_TIER_BANDS order) in either direction.
 
@@ -253,12 +253,60 @@ def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict:
     row_tier = row.get("Influencer_Tier" , "").strip().lower()
 
     matching_creators_list: list[dict] = [
-
+        
         creator 
         for creator in creator_pool 
-        if creator.get("creator_niche" , creator.get("niche" , "")).strip().lower() == row_category and creator.get("creator_tier" , creator.get("tier" , "")).strip().lower() == row_tier
+        if creator["creator_niche"].strip().lower() == row_category and creator["creator_tier"].strip().lower() == row_tier
     ]
 
+    
+    if not matching_creators_list:
+
+        creator_tiers = [ creator_tier for creator_tier , min_follower , max_follower in CREATOR_TIER_BANDS]
+        
+        adjacent_left_tier = adjacent_right_tier = None
+        
+        for i , tier in enumerate(creator_tiers) :
+             if row_tier == tier.strip().lower():
+                 if   i == 0 :
+                    adjacent_right_tier = creator_tiers[i+1]
+                    break
+    
+                 elif i == len(creator_tiers) - 1:
+                    adjacent_left_tier = creator_tiers[i-1]
+                    break
+    
+                 else:
+                     adjacent_left_tier = creator_tiers[i-1]
+                     adjacent_right_tier = creator_tiers[i+1]
+    
+        adjacent_tiers = [t.strip().lower() for t in (adjacent_right_tier , adjacent_left_tier) if t]
+        matching_creators_list = [
+
+            creator 
+
+            for creator in creator_pool
+            if creator["creator_niche"].strip().lower() == row_category and creator["creator_tier"].strip().lower() in adjacent_tiers
+        ]
+
+    
+
+ 
+
+    if not matching_creators_list:
+        matching_creators_list = [
+
+            creator 
+
+            for creator in creator_pool
+            if creator["creator_niche"].strip().lower() == row_category 
+        ]
+
+    
+    if not matching_creators_list:
+        raise ValueError (
+            f"there is no matching creator pool available for the csv_post_row , check the creator_pool"
+        )
     
 
 
