@@ -141,6 +141,9 @@ def safe_datetime(value: str , fmt: str = DEFAULT_DATETIME_FORMAT , default: dat
     if value is None :
         return default
 
+    if isinstance(value , datetime) :
+        return value
+
     if not isinstance(value , str) :
 
         logger.warning(

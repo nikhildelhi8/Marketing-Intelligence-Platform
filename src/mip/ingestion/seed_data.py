@@ -15,12 +15,28 @@ Design decisions locked this phase:
 -- Also no Mega tier as we are working in strict accordance with the raw_data that we are using so we only have ( Nano , Micro , Mid-tier  Macro )
 
 -- Row-to-Creator matching : niche + tier band exact match , falling back to niche + adjacent tier , then niche only. Tier is never dropped before niche.
+
+-- Row-to-Campaign matching : niche + active/completed campaign status  , falling to niche + draft , then None on no match 
+
+--AGENCY_NICHES /CREATOR POOL spans 12 niches and 6 creator per niches , the idea is to have maximum coverage of the data.
+
 '''
 
 
 from faker import Faker
 from faker.providers import DynamicProvider
-from datetime import date , datetime
+from datetime import date , datetime , timedelta
+from pprint import pprint
+from pathlib import Path
+from mip.ingestion.csv_loader import load_influencer_csv
+from mip import PROJECT_ROOT
+import json
+
+
+
+CSV_PATH = PROJECT_ROOT/ "data" / "raw" / "influencer_marketing.csv"
+
+JSON_OUTPUT_PATH = PROJECT_ROOT/ "data" / "seed" / "seeded_dataset.json" 
 
 
 
@@ -173,7 +189,7 @@ def generate_businesses(n: int , seed: int = 42) -> list[dict] :
 
 
 
-CAMPAIGN_STATUSES: list[str] = ['draft' , 'active' , 'completed' , 'cancelled'] 
+CAMPAIGN_STATUSES: list[str] = ['draft' , 'active' , 'completed'] 
 
 
 
@@ -227,9 +243,8 @@ def build_campaign_pool(
     
             campaign_pool.append(campaign_record)
 
-        
 
-        
+
 
     return campaign_pool
 
@@ -305,12 +320,12 @@ def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict:
     
     if not matching_creators_list:
         raise ValueError (
-            f"there is no matching creator pool available for the csv_post_row , check the creator_pool"
+            f"there is no matching creator pool available for the csv_post_row , check the creator_pool for {row_category} and {row_tier}"
         )
     
 
 
-    matching_creator : dict = fake.random_element(matching_creators_list)
+    matching_creator : dict = fake.random_element(elements=matching_creators_list)
 
     
 
@@ -318,19 +333,246 @@ def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict:
 
 
 
+def assign_campaign_to_row(row: dict , campaign_pool : list[dict]) -> str | None :
+    '''
+    Match a CSV row to campaign by niche + status , with a two-level fallback.
+
+    Level 1 : exact niche match , status in {active , completed}
+    Level 2 : exact niche match , status == 'draft' 
+    Level 3 : no match -> None (organic post , not an error)
+
+    Unlike assign_creator_to_row , this function never raises -- a row with no campaign match is a valid , expected outcome.
+
+    Returns : 
+        campaign_id(str) if matched , else None     
+    '''
+
+    row_niche = row["Category"]
+
+
+    matching_campaign_list = [
+
+        campaign 
+        for campaign in campaign_pool 
+        # if campaign["campaign_domain"] == row_niche and campaign["campaign_status"] in ["active" , "completed"]
+
+        if campaign.get("campaign_domain") == row_niche and campaign.get("campaign_status") in ["active" , "completed"]
+    ]
+
+    if not matching_campaign_list :
+        matching_campaign_list = [
+
+            campaign
+            for campaign in campaign_pool
+            if campaign.get("campaign_domain") == row_niche and campaign.get("campaign_status") == 'draft'
+        ]
+
+    if not matching_campaign_list :
+        return None
+
+
+    matching_campagin_id : str  = fake.random_element(elements=matching_campaign_list)["campaign_id"]
+
+    return matching_campagin_id
+
+
+
+def seed_dataset(csv_path: Path) -> list[dict] :
+    '''
+
+    Orchestrate the full Phase 3 seeding pipeline , build all pools , stream CSV rows , match each row to a creator 
+    and campaign (None on failure = organic post) , mutate matched campaigns ' creator lists , and assemble the final joined records.
+
+    Fails fast : any creator-match failure aborts the entire run and propogates the exception. No partial output is written on failure 
+
+    Returns: 
+        list[dict] -- one fully join ed record per CSV row.
+    
+    '''
+
+    # Build phase 
+
+    creator_pool = build_creator_pool ( CREATOR_NICHES , creators_per_niche=6 , seed = 42 )
+
+    business_pool = generate_businesses(8 , seed=42)
+
+    campaign_pool = build_campaign_pool(business_pool , (3,7) , seed=42)
+
+    
+
+
+    # Index phase 
+
+    campaign_pool_by_id = {c["campaign_id"]: c for c in campaign_pool}
+
+
+    # Ingest + Match  + Mutate + Assemble , per row 
+
+
+    assembled_records : list[dict] = [] 
+
+    for row in load_influencer_csv(csv_path):
+
+        matched_creator = assign_creator_to_row(row , creator_pool)
+
+
+        match_campaign_id = assign_campaign_to_row(row , campaign_pool)
+
+        # pprint(match_campaign_id)
+        
+        # pprint(campaign_pool_by_id[match_campaign_id])
+
+        # pprint(matched_creator)
+
+        if match_campaign_id is not None:
+
+            campaign = campaign_pool_by_id[match_campaign_id]
+            if matched_creator["creator_id"] not in campaign["campaign_creator_ids"]:
+                campaign["campaign_creator_ids"].append(matched_creator["creator_id"])
+
+            business_id = campaign["campaign_business_id"]
+
+        else:
+            business_id = None
+
+
+        assembled_record = {
+
+            **row , 
+            "creator_id" : matched_creator["creator_id"] , 
+            "campaign_id" : match_campaign_id , 
+            "business_id" : business_id
+        }
+
+        assembled_records.append(assembled_record)
+
+    return {
+
+        "businesses"       : business_pool , 
+        "campaigns"        : campaign_pool  , 
+        "creators"         : creator_pool , 
+        "posts"            : assembled_records , 
+
+    }
+
+
+
+def _json_default(obj) :
+
+    '''
+    Fallback serializer passed to json.dumps default=' parameter. Called only for objects json.dump doesn't know hoe to 
+    serilaize natevly (eg datetime)  Anything unexpected reaching here should be investigated, not silently stringigiled forever.
+    '''
+
+    if isinstance(obj , datetime) :
+        return obj.isoformat()
+
+    else:
+        raise TypeError(
+            f"Object of type {type(obj)} is not JSON serializable"
+        )
+
+
+
+def persist_seeded_dataset(data: dict , output_path: Path) -> None: 
+
+    output_path.parent.mkdir(parents=True , exist_ok=True )
+    with open(output_path , 'w' , encoding='utf-8') as f:
+        json.dump(data , f , indent = 2 , default=_json_default )
+
+    return f"data saved as json at {output_path}"
+
+
+
+def check_referential_integrity(data: dict) -> None :
+
+    '''
+    Verify zero dangling foreign keys across the seeded dataset.
+
+    Checks:
+      - every post's creator_id exists in data["creators"]
+      - every post's non-None business_id exists in data["businesses"]
+      - every post's non-None campaign_id exists in data["campaigns"]
+      - every id inside each campaign's campaign_creator_ids exists in data["creators"]
+
+    None values for business_id/campaign_id are valid (organic posts) —
+    NOT treated as violations.
+
+    Raises:
+        ValueError, with the specific offending id and which post/campaign
+        it came from, on the first violation found.
+    
+    '''
+
+    creators_pool_id  = { creator["creator_id"] : creator  for creator in data["creators"] }
+
+    campaign_pool_id = { campaign["campaign_id"] : campaign for campaign in data["campaigns"]}
+
+    business_pool_id = {  business["business_id"] : business for business in data["businesses"]}
+
+    for post in data["posts"] : 
+
+      if post["creator_id"] not in creators_pool_id :
+          raise ValueError(
+              f"{post['creator_id']} is not present in creator pool"
+          )
+
+      if post["campaign_id"]: 
+          if post["campaign_id"] not in campaign_pool_id :
+              raise ValueError(
+                  f"{post['campaign_id']} does not exist in the campaingn"
+              )
+
+      if post["business_id"]:
+          if post["business_id"] not in business_pool_id:
+            raise ValueError (
+                f"{post['business_id']} is not present in business pool"
+            )
+
+    for campaign in data["campaigns"]:
+
+        if not campaign["campaign_creator_ids"] :
+            continue
+
+        for campaign_creator_id in campaign["campaign_creator_ids"] :
+            if campaign_creator_id not in creators_pool_id :
+                raise ValueError (
+                    f"{campaign_creator_id} is not present in creator pool"
+                )
+
+    return f"integrity check passed: {len(data['posts'])} posts , {len(data['campaigns'])} campaigns checked"
+          
+
+
+
+
+    
+
+
 
 
 if __name__ == "__main__" : 
 
-    raw_row = {'Post_ID': 'POST_04552', 'Timestamp': datetime(2024, 1, 1, 1, 42), 'Platform': 'Instagram', 'Content_Type': 'Carousel', 'Category': 'Business', 'Likes': 8287, 'Comments': 247, 'Shares': 51, 'Views': 29502, 'Saves': 20, 'Follower_Count': 223080, 'Engagement_Rate': 3.85, 'Hour_of_Day': 1, 'Day_of_Week': 'Monday', 'Hashtag_Count': 16, 'Content_Length': 985, 'Sentiment': 'Positive', 'Influencer_Tier': 'Macro', 'Has_Media': True, 'Is_Verified': False}
-    creator_pool =  build_creator_pool(CREATOR_NICHES , 6 , 42 )
-#    business_pool = generate_businesses(5 , seed=42)
-#    campaign_pool   = build_campaign_pool(business_pool , (4 , 8) , seed =42)
-#    print(business_pool)
-#    print(campaign_pool)
+    result = seed_dataset(CSV_PATH)
 
-    result = assign_creator_to_row(raw_row , creator_pool)
-    print(result)
+    print(persist_seeded_dataset(result , JSON_OUTPUT_PATH))
+
+    print(check_referential_integrity(result))
+
+    
+
+#     raw_row = {'Post_ID': 'POST_04552', 'Timestamp': datetime(2024, 1, 1, 1, 42), 'Platform': 'Instagram', 'Content_Type': 'Carousel', 'Category': 'Business', 'Likes': 8287, 'Comments': 247, 'Shares': 51, 'Views': 29502, 'Saves': 20, 'Follower_Count': 223080, 'Engagement_Rate': 3.85, 'Hour_of_Day': 1, 'Day_of_Week': 'Monday', 'Hashtag_Count': 16, 'Content_Length': 985, 'Sentiment': 'Positive', 'Influencer_Tier': 'Macro', 'Has_Media': True, 'Is_Verified': False}
+#     creator_pool =  build_creator_pool(CREATOR_NICHES , 6 , 42 )
+#     business_pool = generate_businesses(5 , seed=42)
+#     campaign_pool   = build_campaign_pool(business_pool , (4 , 8) , seed =42)
+
+# #    pprint(business_pool)
+#     pprint(campaign_pool)
+
+#     result = assign_creator_to_row(raw_row , creator_pool)
+#     result1 = assign_campaign_to_row(raw_row , campaign_pool)
+#     pprint(result1)
+
 
 
 
