@@ -10,27 +10,27 @@ class Platform(str , Enum):
     LINKEDIN = 'Linkedin'
     TIKTOK = 'Tiktok'
     TWITTER = 'Twitter'
-    YOUTUBE = 'Youtube'
+    YOUTUBE = 'YouTube'
 
 
 class ContentType(str , Enum) :
 
-    ARTICLE = 'article'
-    CAROUSEL = 'carousel'
-    COMMUNITY_POST = 'community_post'
-    DOCUMENT = 'document'
-    DUET = 'duet'
-    LIVE = 'live'
-    PHOTO = 'photo'
-    POLL = 'poll'
-    POST = 'post'
-    RETWEET = 'retweet'
-    SHORT = 'short'
-    STITCH = 'stitch'
-    STORY = 'story'
-    THREAD = 'thread'
-    TWEET  = 'tweet'
-    VIDEO = 'video'
+    ARTICLE = 'Article'
+    CAROUSEL = 'Carousel'
+    COMMUNITY_POST = 'Community_post'
+    DOCUMENT = 'Document'
+    DUET = 'Duet'
+    LIVE = 'Live'
+    PHOTO = 'Photo'
+    POLL = 'Poll'
+    POST = 'Post'
+    RETWEET = 'Retweet'
+    SHORT = 'Short'
+    STITCH = 'Stitch'
+    STORY = 'Story'
+    THREAD = 'Thread'
+    TWEET  = 'Tweet'
+    VIDEO = 'Video'
 
 
 
@@ -40,18 +40,18 @@ class ContentType(str , Enum) :
 
 class Category(str , Enum) : 
 
-    BUSINESS = 'business'
-    EDUCATION = 'education'
-    ENTERTAINMENT = 'entertainment'
-    FASHION = 'fashion'
-    FITNESS = 'fitness'
-    FOOD = 'food'
-    GAMING = 'gaming'
-    HEALTH = 'health'
-    LIFESTYLE = 'lifestyle'
-    SPORTS = 'sports'
-    TECHNOLOGY = 'technology'
-    TRAVEL = 'travel'
+    BUSINESS = 'Business'
+    EDUCATION = 'Education'
+    ENTERTAINMENT = 'Entertainment'
+    FASHION = 'Fashion'
+    FITNESS = 'Fitness'
+    FOOD = 'Food'
+    GAMING = 'Gaming'
+    HEALTH = 'Health'
+    LIFESTYLE = 'Lifestyle'
+    SPORTS = 'Sports'
+    TECHNOLOGY = 'Technology'
+    TRAVEL = 'Travel'
 
 
 
@@ -66,10 +66,10 @@ class Category(str , Enum) :
 
 class CreatorTier(str , Enum) :
 
-    NANO = 'nano'
-    MICRO = 'micro'
-    MID_TIER = 'mid_tier'
-    MACRO = 'macro'
+    NANO = 'Nano'
+    MICRO = 'Micro'
+    MID_TIER = 'Mid-tier'
+    MACRO = 'Macro'
 
 
 # CAMPAIGN_STATUSES: list[str] = ['draft' , 'active' , 'completed'] 
