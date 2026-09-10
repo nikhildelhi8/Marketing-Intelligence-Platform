@@ -6,4 +6,5 @@ venv/
 data/seed/seeded_dataset.json
 *.egg-info/
 practice.py
+scratch
 
