@@ -106,7 +106,7 @@ class Campaign:
             "campaign_status" : self.campaign_status.value , 
             "campaign_start_date" : self.campaign_start_date , 
             "campaign_end_date" : self.campaign_end_date , 
-            "campaingn_creator_ids" : self.campaign_creator_ids
+            "campaign_creator_ids" : self.campaign_creator_ids
 
         }
 
@@ -332,39 +332,6 @@ class CampaignAnalytics :
 
 
 
-JSON_FILE_PATH = PROJECT_ROOT/ 'data' / 'seed' / 'seeded_dataset.json'
-
-with open(JSON_FILE_PATH , 'r') as file :
-
-    data = json.load(file)
-
-
-print(data.keys())
-business_record = data.get("businesses")[3]
-creator_record = data.get("creators")[2]
-campaign_record = data.get("campaigns")[2]
-post_record = data.get("posts")[8]
-
-
-
-business_object = Business.from_dict(business_record)
-
-creator_object = Creator.from_dict(creator_record) 
-
-campaign_object  = Campaign.from_dict(campaign_record)
-
-post_object = SocialPost.from_dict(post_record)
-
-pprint(creator_object)
-pprint(business_object)
-pprint(campaign_object) 
-pprint(post_object)
-
-print(business_object.business_domain.name)
-
-
-print(business_object.to_dict())
-print(campaign_object.to_dict())
 
 
 
