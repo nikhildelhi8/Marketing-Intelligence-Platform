@@ -30,7 +30,11 @@ from pprint import pprint
 from pathlib import Path
 from mip.ingestion.csv_loader import load_influencer_csv
 from mip import PROJECT_ROOT
+from mip.schemas.ingestion_schemas import BusinessSchema , CreatorSchema , CampaignSchema , SocialPostSchema
+from mip.schemas.validation_tracker import ValidationTracker , validate_record
 import json
+
+
 
 
 
@@ -83,7 +87,7 @@ def build_creator_pool(
         niches: list[str] , 
         creators_per_niche : int , 
         seed : int = 42 , 
-    ) -> list[dict] :
+    ) ->tuple[list[dict] , ValidationTracker] :
 
     '''
     Generate a fixed pool of synthetic Creator records spread across `niches`,
@@ -115,6 +119,8 @@ def build_creator_pool(
 
     fake.add_provider(creator_provider)
 
+
+    tracker = ValidationTracker(max_failure_rate=0.20)
 
     creator_pool = []
 
@@ -148,13 +154,20 @@ def build_creator_pool(
                                 "creator_follower_count"  :   fake.random_int(min =min_follower_count , max = max_follower_count)
                             }
 
+            validated = validate_record(CreatorSchema , creator_record , tracker)
+
+            if validated is None :
+                continue
+
+            
+
             creator_pool.append(creator_record)
 
 
-    return creator_pool
+    return creator_pool , tracker 
 
 
-def generate_businesses(n: int , seed: int = 42) -> list[dict] :
+def generate_businesses(n: int , seed: int = 42) -> tuple[list[dict] , ValidationTracker] :
     '''
     Generate n synthetic Business records via faker : company name , industry and the budget range.
 
@@ -163,6 +176,8 @@ def generate_businesses(n: int , seed: int = 42) -> list[dict] :
     '''
 
     fake.seed_instance(seed)
+
+    tracker = ValidationTracker(max_failure_rate=0.20)
 
     
     business_pool = []
@@ -183,9 +198,14 @@ def generate_businesses(n: int , seed: int = 42) -> list[dict] :
             "business_budget"       : fake.random_int(min=10000 , max=750000 , step = 5000)
         }
 
+
+        validated = validate_record(BusinessSchema , business_record , tracker)
+        if validated is None :
+            continue
+
         business_pool.append(business_record)
 
-    return business_pool
+    return business_pool  , tracker 
 
 
 
@@ -197,11 +217,13 @@ def build_campaign_pool(
         business_pool : list[dict] , 
         campaigns_per_business_range: tuple[int , int] , 
         seed : int=42 , 
-    ) -> list[dict]:
+    ) -> tuple[list[dict] , ValidationTracker]:
 
     
 
     fake.seed_instance(seed)
+
+    tracker = ValidationTracker(max_failure_rate=0.20)
 
     campaign_pool = []
 
@@ -240,13 +262,21 @@ def build_campaign_pool(
                 'campaign_end_date'      : end_date.isoformat() , 
                 "campaign_creator_ids"   : [] ,
             }
+
+            validated = validate_record(CampaignSchema , campaign_record , tracker)
+
+            if validated is None :
+                continue 
+
     
             campaign_pool.append(campaign_record)
 
+    return campaign_pool , tracker 
 
 
 
-    return campaign_pool
+
+
 
 
 def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict: 
@@ -377,7 +407,7 @@ def assign_campaign_to_row(row: dict , campaign_pool : list[dict]) -> str | None
 
 
 
-def seed_dataset(csv_path: Path) -> list[dict] :
+def seed_dataset(csv_path: Path) -> tuple[list[dict] , dict[str,ValidationTracker]] :
     '''
 
     Orchestrate the full Phase 3 seeding pipeline , build all pools , stream CSV rows , match each row to a creator 
@@ -392,12 +422,14 @@ def seed_dataset(csv_path: Path) -> list[dict] :
 
     # Build phase 
 
-    creator_pool = build_creator_pool ( CREATOR_NICHES , creators_per_niche=6 , seed = 42 )
+    creator_pool , creator_validation_result = build_creator_pool ( CREATOR_NICHES , creators_per_niche=6 , seed = 42 )
 
-    business_pool = generate_businesses(8 , seed=42)
+    business_pool , business_validation_result = generate_businesses(8 , seed=42)
 
-    campaign_pool = build_campaign_pool(business_pool , (3,7) , seed=42)
+    campaign_pool , campaign_validation_result = build_campaign_pool(business_pool , (3,7) , seed=42)
 
+
+    tracker = ValidationTracker(max_failures=500)
     
 
 
@@ -412,6 +444,12 @@ def seed_dataset(csv_path: Path) -> list[dict] :
     assembled_records : list[dict] = [] 
 
     for row in load_influencer_csv(csv_path):
+
+        validated = validate_record(SocialPostSchema , row , tracker)
+
+        if validated is None :
+            continue 
+
 
         matched_creator = assign_creator_to_row(row , creator_pool)
 
@@ -446,14 +484,111 @@ def seed_dataset(csv_path: Path) -> list[dict] :
 
         assembled_records.append(assembled_record)
 
-    return {
+
+    pydantic_validation_result = {
+        "creators" : creator_validation_result , 
+        "business" : business_validation_result , 
+        "campaigns" : campaign_validation_result , 
+        "posts" : tracker
+    }
+
+    return (
+        {
 
         "businesses"       : business_pool , 
         "campaigns"        : campaign_pool  , 
         "creators"         : creator_pool , 
         "posts"            : assembled_records , 
 
-    }
+    } , pydantic_validation_result
+    )
+
+
+# def seed_dataset(csv_path: Path) -> list[dict] :
+#     '''
+
+#     Orchestrate the full Phase 3 seeding pipeline , build all pools , stream CSV rows , match each row to a creator 
+#     and campaign (None on failure = organic post) , mutate matched campaigns ' creator lists , and assemble the final joined records.
+
+#     Fails fast : any creator-match failure aborts the entire run and propogates the exception. No partial output is written on failure 
+
+#     Returns: 
+#         list[dict] -- one fully join ed record per CSV row.
+    
+#     '''
+
+#     # Build phase 
+
+#     creator_pool , creator_validation_result = build_creator_pool ( CREATOR_NICHES , creators_per_niche=6 , seed = 42 )
+
+#     business_pool , business_validation_result = generate_businesses(8 , seed=42)
+
+#     campaign_pool , campaign_validation_result = build_campaign_pool(business_pool , (3,7) , seed=42)
+
+
+#     tracker = ValidationTracker(max_failures=500)
+    
+
+
+#     # Index phase 
+
+#     campaign_pool_by_id = {c["campaign_id"]: c for c in campaign_pool}
+
+
+#     # Ingest + Match  + Mutate + Assemble , per row 
+
+
+#     assembled_records : list[dict] = [] 
+
+#     for row in load_influencer_csv(csv_path):
+
+#         validated = validate_record(SocialPostSchema , row , tracker)
+
+#         if validated is None :
+#             continue 
+
+
+#         matched_creator = assign_creator_to_row(row , creator_pool)
+
+
+#         match_campaign_id = assign_campaign_to_row(row , campaign_pool)
+
+#         # pprint(match_campaign_id)
+        
+#         # pprint(campaign_pool_by_id[match_campaign_id])
+
+#         # pprint(matched_creator)
+
+#         if match_campaign_id is not None:
+
+#             campaign = campaign_pool_by_id[match_campaign_id]
+#             if matched_creator["creator_id"] not in campaign["campaign_creator_ids"]:
+#                 campaign["campaign_creator_ids"].append(matched_creator["creator_id"])
+
+#             business_id = campaign["campaign_business_id"]
+
+#         else:
+#             business_id = None
+
+
+#         assembled_record = {
+
+#             **row , 
+#             "creator_id" : matched_creator["creator_id"] , 
+#             "campaign_id" : match_campaign_id , 
+#             "business_id" : business_id
+#         }
+
+#         assembled_records.append(assembled_record)
+
+#     return {
+
+#         "businesses"       : business_pool , 
+#         "campaigns"        : campaign_pool  , 
+#         "creators"         : creator_pool , 
+#         "posts"            : assembled_records , 
+
+#     }
 
 
 
@@ -563,7 +698,9 @@ if __name__ == "__main__" :
 
 #     raw_row = {'Post_ID': 'POST_04552', 'Timestamp': datetime(2024, 1, 1, 1, 42), 'Platform': 'Instagram', 'Content_Type': 'Carousel', 'Category': 'Business', 'Likes': 8287, 'Comments': 247, 'Shares': 51, 'Views': 29502, 'Saves': 20, 'Follower_Count': 223080, 'Engagement_Rate': 3.85, 'Hour_of_Day': 1, 'Day_of_Week': 'Monday', 'Hashtag_Count': 16, 'Content_Length': 985, 'Sentiment': 'Positive', 'Influencer_Tier': 'Macro', 'Has_Media': True, 'Is_Verified': False}
 #     creator_pool =  build_creator_pool(CREATOR_NICHES , 6 , 42 )
-#     business_pool = generate_businesses(5 , seed=42)
+    # business_pool , _ = generate_businesses(5 , seed=42)
+    # print(_.failures)
+    
 #     campaign_pool   = build_campaign_pool(business_pool , (4 , 8) , seed =42)
 
 # #    pprint(business_pool)
@@ -591,11 +728,4 @@ if __name__ == "__main__" :
 
 
     
-
-
-
-
-
-
-
 

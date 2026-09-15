@@ -1,6 +1,11 @@
-from pydantic import BaseModel , field_validator
+from pydantic import BaseModel , field_validator , ValidationError as PydanticValidationError  , Field
 from mip.domain.enums import Platform , ContentType , CampaignStatus , Category , CreatorTier
-from mip.exceptions import ValidationError , RepositoryError , NotFoundError , MIPError
+from mip.schemas.shared_validators import PositiveBudget
+
+
+
+
+
 
 
 #  {
@@ -11,31 +16,12 @@ from mip.exceptions import ValidationError , RepositoryError , NotFoundError , M
 # }
 
 
-data = {
-      "business_id": "BS_002",
-      "business_name": "Yang, Gardner and Garza",
-      "business_domain": "Business",
-      "business_budget": -87
-    }
-
 class BusinessSchema(BaseModel):
 
     business_id : str 
     business_name : str 
     business_domain : Category
-    business_budget : int 
-
-
-    @field_validator("business_budget")
-    @classmethod
-    def budget_non_negative(cls , business_budget):
-
-        if business_budget<=0 :
-            raise ValidationError(f"business_budget cannot be negative number currently {business_budget}")
-
-        return business_budget
-
-
+    business_budget : PositiveBudget 
 
 
 # {
@@ -62,20 +48,11 @@ class CampaignSchema(BaseModel):
     campaign_id : str 
     campaign_business_id : str    
     campaign_domain : Category
-    campaign_budget : int 
+    campaign_budget : PositiveBudget 
     campaign_status : CampaignStatus 
     campaign_start_date : str 
     campaign_end_date : str 
     campaign_creator_ids : list[str]
-
-    @field_validator("campaign_budget")
-    @classmethod
-    def non_negative_campaign_budget(cls , campaign_budget):
-
-        if campaign_budget <= 0 :
-            raise ValidationError(f"campaign_budget cannot be a negative value , currently {campaign_budget}")
-        
-        return campaign_budget
 
 
 
@@ -90,7 +67,7 @@ class CampaignSchema(BaseModel):
 # }
 
 
-class CreatorShema(BaseModel) :
+class CreatorSchema(BaseModel) :
 
     creator_id : str 
     creator_name : str 
@@ -139,32 +116,33 @@ class CreatorShema(BaseModel) :
 
 class SocialPostSchema(BaseModel) :
 
-    post_id : str
-    timestamp : str 
-    platform : Platform
-    content_type : ContentType 
-    category : Category
-    likes : int 
-    comments : int 
-    shares : int 
-    views : int 
-    saves : int 
-    follower_count : int 
-    engagemenet_rate : float 
-    hour_of_day : int 
-    day_of_week : str 
-    hashtag_count : int 
-    content_length : int 
-    sentiment : str 
-    influencer_tier : CreatorTier 
-    has_media : int 
-    is_verified: bool 
+    post_id : str = Field(alias = "Post_ID")
+    timestamp : str = Field(alias = "Timestamp")
+    platform : Platform =  Field(alias= "Platform")
+    content_type : ContentType = Field(alias = "Content_Type") 
+    category : Category = Field(alias = "Category")
+    likes : int = Field(alias  = "Likes")
+    comments : int  = Field(alias = "Comments")
+    shares : int  = Field(alias = "Shares")
+    views : int  = Field(alias = "Views")
+    saves : int  = Field(alias = "Saves")
+    follower_count : int  = Field(alias = "Follower_Count")
+    engagement_rate : float  = Field(alias = "Engagement_Rate")
+    hour_of_day : int  = Field(alias = "Hour_of_Day")
+    day_of_week : str = Field(alias = "Day_of_Week")
+    hashtag_count : int = Field(alias = "Hashtag_Count")
+    content_length : int = Field(alias = "Content_Length")
+    sentiment : str  = Field(alias = "Sentiment")
+    influencer_tier : CreatorTier = Field(alias = "Influencer_Tier") 
+    has_media : bool = Field(alias = "Has_Media") 
+    is_verified: bool = Field(alias = "Is_Verified")
     creator_id : str 
     campaign_id : str | None 
     business_id : str | None
 
 
-    
+
+
 
 
 
