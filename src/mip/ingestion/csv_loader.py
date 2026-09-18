@@ -14,6 +14,9 @@ from typing import Iterator , Any , Callable
 
 from mip.utils.formatting import safe_float , safe_int , safe_bool , safe_datetime , safe_string
 
+from mip.schemas.ingestion_schemas import SocialPostSchema
+from mip.schemas.validation_tracker import validate_record , ValidationTracker
+
 from mip import PROJECT_ROOT
 
 
@@ -66,8 +69,13 @@ def load_influencer_csv(path: Path) -> Iterator[dict] :
         One dict per CSV row, with values converted per COLUMN_PARSERS
         (or left as-is / cleaned, per your Step 3 decision on unmapped columns).
     """
+
+
     def identity(value: Any) -> Any :
         return value
+
+
+    
 
 
 
@@ -77,6 +85,7 @@ def load_influencer_csv(path: Path) -> Iterator[dict] :
         reader = csv.DictReader(f)
 
         for row in reader :
+
             yield { k : COLUMN_PARSERS.get(k ,identity)(v) for k , v in row.items()}
 
 
