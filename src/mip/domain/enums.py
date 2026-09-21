@@ -7,8 +7,8 @@ class Platform(str , Enum):
 
     FACEBOOK = 'Facebook'
     INSTAGRAM = 'Instagram'
-    LINKEDIN = 'Linkedin'
-    TIKTOK = 'Tiktok'
+    LINKEDIN = 'LinkedIn'
+    TIKTOK = 'TikTok'
     TWITTER = 'Twitter'
     YOUTUBE = 'YouTube'
 
@@ -17,13 +17,14 @@ class ContentType(str , Enum) :
 
     ARTICLE = 'Article'
     CAROUSEL = 'Carousel'
-    COMMUNITY_POST = 'Community_post'
+    COMMUNITY_POST = 'Community Post'
     DOCUMENT = 'Document'
     DUET = 'Duet'
     LIVE = 'Live'
     PHOTO = 'Photo'
     POLL = 'Poll'
     POST = 'Post'
+    REEL = "Reel"
     RETWEET = 'Retweet'
     SHORT = 'Short'
     STITCH = 'Stitch'

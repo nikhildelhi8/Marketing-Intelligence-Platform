@@ -25,6 +25,8 @@ class ValidationTracker:
     - failures: bounded list of {raw_record, reason} for failed records
     
     '''
+    # below name class constant is used to check the rate of failure , setting to 10 so that to get rate failure , but change it depending on the total number of records 
+    MIN_SAMPLE_SIZE_FOR_RATE_CHECK = 10
 
     def __init__(self , max_failures: int | None = None , max_failure_rate: float | None = None) :
 
@@ -41,17 +43,19 @@ class ValidationTracker:
 
         self.processed += 1 
         self.failed += 1 
-        self.failures.append({"records" : raw_record , "reason" : reason})
+        self.failures.append({"record" : raw_record , "reason" : reason})
         logger.warning(f"Validation failed: {reason} | record={raw_record}")
         self._check_abort()
 
     def _check_abort(self) -> None :
-        if self.max_failures is not None and self.failed > self.max_failures:
+
+
+        if self.max_failures is not None and self.failed >= self.max_failures:
             raise exceptions.ValidationError(
                 f"Aborting: failure count {self.failed} exceeded max_falure= {self.max_failures}"
             )
 
-        if self.max_failure_rate is not None and self.processed >= 10:
+        if self.max_failure_rate is not None and self.processed >= self.MIN_SAMPLE_SIZE_FOR_RATE_CHECK:
 
             rate = self.failed / self.processed
             if rate > self. max_failure_rate:

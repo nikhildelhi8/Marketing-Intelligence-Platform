@@ -1,0 +1,62 @@
+{
+  
+  "businesses" : [
+
+    {
+        "business_id": "BS_002",
+        "business_name": "Yang, Gardner and Garza",
+        "business_domain": "Business",
+        "business_budget": 45000
+      }
+  ] , 
+
+
+
+  "posts": [
+      {
+        "Post_ID": "POST_04552",
+        "Timestamp": "2024-01-01T01:42:00",
+        "Platform": "No_Platform",
+        "Content_Type": "Carousel",
+        "Category": "Business",
+        "Likes": 8287,
+        "Comments": 247,
+        "Shares": 51,
+        "Views": 29502,
+        "Saves": 20,
+        "Follower_Count": 223080,
+        "Engagement_Rate": 3.85,
+        "Hour_of_Day": 1,
+        "Day_of_Week": "Monday",
+        "Hashtag_Count": 16,
+        "Content_Length": 985,
+        "Sentiment": "Positive",
+        "Influencer_Tier": "Macro",
+        "Has_Media": true,
+        "Is_Verified": false,
+        "creator_id": "CR_004",
+        "campaign_id": "CP_004",
+        "business_id": "BS_002"
+      }
+    ] , 
+
+  "campaigns" : [
+    {
+        "campaign_id": "CP_004",
+        "campaign_business_id": "BS_002",
+        "campaign_domain": "Business",
+        "campaign_budget": 12123,
+        "campaign_status": "completed",
+        "campaign_start_date": "2024-05-26",
+        "campaign_end_date": "2024-07-06",
+        "campaign_creator_ids": [
+          "CR_004",
+          "CR_005",
+          "CR_006",
+          "CR_003",
+          "CR_001",
+          "CR_002"
+        ]
+      }
+  ]
+}
