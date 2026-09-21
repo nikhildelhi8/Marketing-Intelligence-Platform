@@ -75,9 +75,6 @@ def load_influencer_csv(path: Path) -> Iterator[dict] :
         return value
 
 
-    
-
-
 
 
     with open(path , newline="" , encoding="utf-8") as f:
@@ -85,6 +82,7 @@ def load_influencer_csv(path: Path) -> Iterator[dict] :
         reader = csv.DictReader(f)
 
         for row in reader :
+            
 
             yield { k : COLUMN_PARSERS.get(k ,identity)(v) for k , v in row.items()}
 
@@ -96,7 +94,7 @@ if __name__ == "__main__" :
 
         print(f"row {i}" , row)
 
-        if i >=5:
+        if i >=263:
             break
 
 

@@ -40,7 +40,7 @@ import json
 
 CSV_PATH = PROJECT_ROOT/ "data" / "raw" / "influencer_marketing.csv"
 
-JSON_OUTPUT_PATH = PROJECT_ROOT/ "data" / "seed" / "seeded_dataset.json" 
+JSON_OUTPUT_PATH = PROJECT_ROOT/ "data" / "seed" / "seeded_dataset_new.json" 
 
 
 
@@ -279,7 +279,7 @@ def build_campaign_pool(
 
 
 
-def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict: 
+def assign_creator_to_row(row: SocialPostSchema , creator_pool: list[dict]) -> dict: 
 
     '''
     Given one parsed CSV row and the full creator pool , select the creator this row/post should be attached to .
@@ -297,6 +297,10 @@ def assign_creator_to_row(row: dict , creator_pool: list[dict]) -> dict:
     row_category = row.get("Category" , "").strip().lower()
     row_tier = row.get("Influencer_Tier" , "").strip().lower()
 
+    # row_category = row.model_dump(by_alias = True)["Category"]
+    # row_tier = row.model_dump(by_alias=True)["Influencer_Tier"]
+
+    
     matching_creators_list: list[dict] = [
         
         creator 
@@ -377,7 +381,8 @@ def assign_campaign_to_row(row: dict , campaign_pool : list[dict]) -> str | None
         campaign_id(str) if matched , else None     
     '''
 
-    row_niche = row["Category"]
+    row_niche = row.get("Category" , "").strip()
+
 
 
     matching_campaign_list = [
@@ -445,10 +450,15 @@ def seed_dataset(csv_path: Path) -> tuple[list[dict] , dict[str,ValidationTracke
 
     for row in load_influencer_csv(csv_path):
 
-        validated = validate_record(SocialPostSchema , row , tracker)
+        # print(row)
 
+        validated = validate_record(SocialPostSchema , row , tracker)
+                
         if validated is None :
             continue 
+
+        row = validated.model_dump(by_alias=True)
+
 
 
         matched_creator = assign_creator_to_row(row , creator_pool)
@@ -482,6 +492,7 @@ def seed_dataset(csv_path: Path) -> tuple[list[dict] , dict[str,ValidationTracke
             "business_id" : business_id
         }
 
+
         assembled_records.append(assembled_record)
 
 
@@ -504,92 +515,6 @@ def seed_dataset(csv_path: Path) -> tuple[list[dict] , dict[str,ValidationTracke
     )
 
 
-# def seed_dataset(csv_path: Path) -> list[dict] :
-#     '''
-
-#     Orchestrate the full Phase 3 seeding pipeline , build all pools , stream CSV rows , match each row to a creator 
-#     and campaign (None on failure = organic post) , mutate matched campaigns ' creator lists , and assemble the final joined records.
-
-#     Fails fast : any creator-match failure aborts the entire run and propogates the exception. No partial output is written on failure 
-
-#     Returns: 
-#         list[dict] -- one fully join ed record per CSV row.
-    
-#     '''
-
-#     # Build phase 
-
-#     creator_pool , creator_validation_result = build_creator_pool ( CREATOR_NICHES , creators_per_niche=6 , seed = 42 )
-
-#     business_pool , business_validation_result = generate_businesses(8 , seed=42)
-
-#     campaign_pool , campaign_validation_result = build_campaign_pool(business_pool , (3,7) , seed=42)
-
-
-#     tracker = ValidationTracker(max_failures=500)
-    
-
-
-#     # Index phase 
-
-#     campaign_pool_by_id = {c["campaign_id"]: c for c in campaign_pool}
-
-
-#     # Ingest + Match  + Mutate + Assemble , per row 
-
-
-#     assembled_records : list[dict] = [] 
-
-#     for row in load_influencer_csv(csv_path):
-
-#         validated = validate_record(SocialPostSchema , row , tracker)
-
-#         if validated is None :
-#             continue 
-
-
-#         matched_creator = assign_creator_to_row(row , creator_pool)
-
-
-#         match_campaign_id = assign_campaign_to_row(row , campaign_pool)
-
-#         # pprint(match_campaign_id)
-        
-#         # pprint(campaign_pool_by_id[match_campaign_id])
-
-#         # pprint(matched_creator)
-
-#         if match_campaign_id is not None:
-
-#             campaign = campaign_pool_by_id[match_campaign_id]
-#             if matched_creator["creator_id"] not in campaign["campaign_creator_ids"]:
-#                 campaign["campaign_creator_ids"].append(matched_creator["creator_id"])
-
-#             business_id = campaign["campaign_business_id"]
-
-#         else:
-#             business_id = None
-
-
-#         assembled_record = {
-
-#             **row , 
-#             "creator_id" : matched_creator["creator_id"] , 
-#             "campaign_id" : match_campaign_id , 
-#             "business_id" : business_id
-#         }
-
-#         assembled_records.append(assembled_record)
-
-#     return {
-
-#         "businesses"       : business_pool , 
-#         "campaigns"        : campaign_pool  , 
-#         "creators"         : creator_pool , 
-#         "posts"            : assembled_records , 
-
-#     }
-
 
 
 def _json_default(obj) :
@@ -609,7 +534,7 @@ def _json_default(obj) :
 
 
 
-def persist_seeded_dataset(data: dict , output_path: Path) -> None: 
+def persist_seeded_dataset(data: dict , output_path: Path) -> str: 
 
     output_path.parent.mkdir(parents=True , exist_ok=True )
     with open(output_path , 'w' , encoding='utf-8') as f:
@@ -688,11 +613,19 @@ def check_referential_integrity(data: dict) -> None :
 
 if __name__ == "__main__" : 
 
-    result = seed_dataset(CSV_PATH)
+    result , pydantic_error_details = seed_dataset(CSV_PATH)
 
     print(persist_seeded_dataset(result , JSON_OUTPUT_PATH))
 
     print(check_referential_integrity(result))
+
+    if pydantic_error_details:
+        print(f"encountered issues while validating the data : ")
+        for k , v in pydantic_error_details.items() :
+            print(f" total failed count -- {k} : {v.failures}")
+            print( f"ffailure list --  {k} : {v.failed} ")
+
+
 
     
 

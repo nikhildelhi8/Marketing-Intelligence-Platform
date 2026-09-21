@@ -1,6 +1,7 @@
 from pydantic import BaseModel , field_validator , ValidationError as PydanticValidationError  , Field
 from mip.domain.enums import Platform , ContentType , CampaignStatus , Category , CreatorTier
 from mip.schemas.shared_validators import PositiveBudget
+from datetime import datetime
 
 
 
@@ -117,7 +118,7 @@ class CreatorSchema(BaseModel) :
 class SocialPostSchema(BaseModel) :
 
     post_id : str = Field(alias = "Post_ID")
-    timestamp : str = Field(alias = "Timestamp")
+    timestamp : datetime | None = Field(alias = "Timestamp")
     platform : Platform =  Field(alias= "Platform")
     content_type : ContentType = Field(alias = "Content_Type") 
     category : Category = Field(alias = "Category")
@@ -136,9 +137,9 @@ class SocialPostSchema(BaseModel) :
     influencer_tier : CreatorTier = Field(alias = "Influencer_Tier") 
     has_media : bool = Field(alias = "Has_Media") 
     is_verified: bool = Field(alias = "Is_Verified")
-    creator_id : str 
-    campaign_id : str | None 
-    business_id : str | None
+    # creator_id : str 
+    # campaign_id : str | None 
+    # business_id : str | None
 
 
 
