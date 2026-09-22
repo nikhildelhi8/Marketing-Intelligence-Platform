@@ -11,3 +11,6 @@ class RepositoryError(MIPError):
 class NotFoundError(MIPError):
     pass
 
+
+class DuplicateError(MIPError):
+    pass
