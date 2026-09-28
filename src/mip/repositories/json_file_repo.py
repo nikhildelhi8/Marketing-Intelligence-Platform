@@ -66,6 +66,7 @@ class JsonFileRepo(Generic[T]):
                 validatedObject = self.from_dict(item)
 
             except Exception as e :
+                
                 logger.warning(f"parsing failed for {entity_id}")
                 failed_parsed_record.append({entity_id: item})
                 continue
@@ -74,7 +75,8 @@ class JsonFileRepo(Generic[T]):
 
         if len(failed_parsed_record) > 0 : 
 
-            logger.warning(f"Encountered issue while parsing json data to {T} objects '\n' Failed entries -- {failed_parsed_record}" )
+            logger.warning(f"Encountered issue while parsing json data to {T} objects '\n' Failed entries" )
+            #  logger.warning(f"Encountered issue while parsing json data to {T} objects '\n' Failed entries -- {failed_parsed_record}" )
 
        
 
@@ -99,7 +101,7 @@ class JsonFileRepo(Generic[T]):
 
         try:
             with os.fdopen(fd , 'w') as f:
-                json.dump(json_safe_dict , f)
+                json.dump(json_safe_dict , f , indent = 4 )
             os.replace(tmp_path , self.path)
 
         except Exception as e :
@@ -115,6 +117,7 @@ class JsonFileRepo(Generic[T]):
     def add(self , entity: T) -> None:
 
         entity_id = self.get_id(entity)
+        
 
         if not entity_id:
             raise ValidationError(
@@ -122,15 +125,35 @@ class JsonFileRepo(Generic[T]):
             )
 
         if entity_id in self._data:
+           
+            # raise DuplicateError(
+            #     f"Entity with id - '{entity_id}' is already added"
+            # )
+            logger.warning(f"Entity id with id -- {entity_id} is already added")
+            return
+        
 
-            raise DuplicateError(
-                f"Entity with id - '{entity_id}' is already added"
-            )
-
+        
         self._data[entity_id] = entity
 
         self._flush()
 
+
+    def add_many(self , entities : list[T]) -> None :
+
+        for entity in entities :
+
+            entity_id = self.get_id(entity)
+
+            if not entity_id:
+                raise ValidationError(f"id - '{entity_id}' is not present , check the object")
+
+            if entity_id in self._data:
+                continue 
+
+            self._data[entity_id] = entity
+
+        self._flush()
 
 
     def get(self , entity_id : str) -> T | None :
