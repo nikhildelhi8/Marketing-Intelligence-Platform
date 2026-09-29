@@ -1,0 +1,562 @@
+{
+    "CP_001": {
+        "campaign_id": "CP_001",
+        "campaign_business_id": "BS_001",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 30049,
+        "campaign_status": "draft",
+        "campaign_start_date": "2024-05-23",
+        "campaign_end_date": "2024-07-11",
+        "campaign_creator_ids": []
+    },
+    "CP_002": {
+        "campaign_id": "CP_002",
+        "campaign_business_id": "BS_001",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 58348,
+        "campaign_status": "completed",
+        "campaign_start_date": "2024-08-14",
+        "campaign_end_date": "2024-09-10",
+        "campaign_creator_ids": [
+            "CR_016",
+            "CR_017",
+            "CR_015",
+            "CR_018",
+            "CR_013",
+            "CR_014"
+        ]
+    },
+    "CP_003": {
+        "campaign_id": "CP_003",
+        "campaign_business_id": "BS_001",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 52698,
+        "campaign_status": "active",
+        "campaign_start_date": "2026-02-15",
+        "campaign_end_date": "2026-03-12",
+        "campaign_creator_ids": [
+            "CR_017",
+            "CR_013",
+            "CR_016",
+            "CR_018",
+            "CR_014",
+            "CR_015"
+        ]
+    },
+    "CP_004": {
+        "campaign_id": "CP_004",
+        "campaign_business_id": "BS_002",
+        "campaign_domain": "Business",
+        "campaign_budget": 12123,
+        "campaign_status": "completed",
+        "campaign_start_date": "2024-05-26",
+        "campaign_end_date": "2024-07-06",
+        "campaign_creator_ids": [
+            "CR_004",
+            "CR_005",
+            "CR_006",
+            "CR_003",
+            "CR_001",
+            "CR_002"
+        ]
+    },
+    "CP_005": {
+        "campaign_id": "CP_005",
+        "campaign_business_id": "BS_002",
+        "campaign_domain": "Business",
+        "campaign_budget": 11015,
+        "campaign_status": "completed",
+        "campaign_start_date": "2025-07-18",
+        "campaign_end_date": "2025-10-11",
+        "campaign_creator_ids": [
+            "CR_004",
+            "CR_005",
+            "CR_002",
+            "CR_003",
+            "CR_006",
+            "CR_001"
+        ]
+    },
+    "CP_006": {
+        "campaign_id": "CP_006",
+        "campaign_business_id": "BS_002",
+        "campaign_domain": "Business",
+        "campaign_budget": 18246,
+        "campaign_status": "draft",
+        "campaign_start_date": "2025-08-22",
+        "campaign_end_date": "2025-11-13",
+        "campaign_creator_ids": []
+    },
+    "CP_007": {
+        "campaign_id": "CP_007",
+        "campaign_business_id": "BS_003",
+        "campaign_domain": "Sports",
+        "campaign_budget": 16432,
+        "campaign_status": "draft",
+        "campaign_start_date": "2025-07-09",
+        "campaign_end_date": "2025-07-23",
+        "campaign_creator_ids": []
+    },
+    "CP_008": {
+        "campaign_id": "CP_008",
+        "campaign_business_id": "BS_003",
+        "campaign_domain": "Sports",
+        "campaign_budget": 8552,
+        "campaign_status": "draft",
+        "campaign_start_date": "2025-09-26",
+        "campaign_end_date": "2025-11-22",
+        "campaign_creator_ids": []
+    },
+    "CP_009": {
+        "campaign_id": "CP_009",
+        "campaign_business_id": "BS_003",
+        "campaign_domain": "Sports",
+        "campaign_budget": 5674,
+        "campaign_status": "draft",
+        "campaign_start_date": "2024-10-09",
+        "campaign_end_date": "2024-12-05",
+        "campaign_creator_ids": []
+    },
+    "CP_010": {
+        "campaign_id": "CP_010",
+        "campaign_business_id": "BS_003",
+        "campaign_domain": "Sports",
+        "campaign_budget": 17885,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-02-06",
+        "campaign_end_date": "2025-04-06",
+        "campaign_creator_ids": [
+            "CR_056",
+            "CR_060",
+            "CR_058",
+            "CR_059",
+            "CR_057",
+            "CR_055"
+        ]
+    },
+    "CP_011": {
+        "campaign_id": "CP_011",
+        "campaign_business_id": "BS_003",
+        "campaign_domain": "Sports",
+        "campaign_budget": 15955,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-07-19",
+        "campaign_end_date": "2025-08-07",
+        "campaign_creator_ids": [
+            "CR_057",
+            "CR_060",
+            "CR_058",
+            "CR_059",
+            "CR_056",
+            "CR_055"
+        ]
+    },
+    "CP_012": {
+        "campaign_id": "CP_012",
+        "campaign_business_id": "BS_003",
+        "campaign_domain": "Sports",
+        "campaign_budget": 5291,
+        "campaign_status": "completed",
+        "campaign_start_date": "2025-05-31",
+        "campaign_end_date": "2025-08-01",
+        "campaign_creator_ids": [
+            "CR_056",
+            "CR_060",
+            "CR_059",
+            "CR_057",
+            "CR_058",
+            "CR_055"
+        ]
+    },
+    "CP_013": {
+        "campaign_id": "CP_013",
+        "campaign_business_id": "BS_004",
+        "campaign_domain": "Fashion",
+        "campaign_budget": 209349,
+        "campaign_status": "draft",
+        "campaign_start_date": "2025-12-31",
+        "campaign_end_date": "2026-03-01",
+        "campaign_creator_ids": []
+    },
+    "CP_014": {
+        "campaign_id": "CP_014",
+        "campaign_business_id": "BS_004",
+        "campaign_domain": "Fashion",
+        "campaign_budget": 231346,
+        "campaign_status": "draft",
+        "campaign_start_date": "2025-10-01",
+        "campaign_end_date": "2025-10-20",
+        "campaign_creator_ids": []
+    },
+    "CP_015": {
+        "campaign_id": "CP_015",
+        "campaign_business_id": "BS_004",
+        "campaign_domain": "Fashion",
+        "campaign_budget": 282216,
+        "campaign_status": "draft",
+        "campaign_start_date": "2025-11-20",
+        "campaign_end_date": "2025-12-14",
+        "campaign_creator_ids": []
+    },
+    "CP_016": {
+        "campaign_id": "CP_016",
+        "campaign_business_id": "BS_004",
+        "campaign_domain": "Fashion",
+        "campaign_budget": 130869,
+        "campaign_status": "active",
+        "campaign_start_date": "2026-01-27",
+        "campaign_end_date": "2026-03-30",
+        "campaign_creator_ids": [
+            "CR_021",
+            "CR_024",
+            "CR_019",
+            "CR_020",
+            "CR_022",
+            "CR_023"
+        ]
+    },
+    "CP_017": {
+        "campaign_id": "CP_017",
+        "campaign_business_id": "BS_004",
+        "campaign_domain": "Fashion",
+        "campaign_budget": 100638,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-08-12",
+        "campaign_end_date": "2025-10-11",
+        "campaign_creator_ids": [
+            "CR_021",
+            "CR_020",
+            "CR_022",
+            "CR_019",
+            "CR_024",
+            "CR_023"
+        ]
+    },
+    "CP_018": {
+        "campaign_id": "CP_018",
+        "campaign_business_id": "BS_005",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 238977,
+        "campaign_status": "completed",
+        "campaign_start_date": "2024-10-04",
+        "campaign_end_date": "2024-11-21",
+        "campaign_creator_ids": [
+            "CR_013",
+            "CR_016",
+            "CR_018",
+            "CR_017",
+            "CR_014",
+            "CR_015"
+        ]
+    },
+    "CP_019": {
+        "campaign_id": "CP_019",
+        "campaign_business_id": "BS_005",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 195021,
+        "campaign_status": "completed",
+        "campaign_start_date": "2025-08-21",
+        "campaign_end_date": "2025-09-25",
+        "campaign_creator_ids": [
+            "CR_013",
+            "CR_014",
+            "CR_015",
+            "CR_018",
+            "CR_016",
+            "CR_017"
+        ]
+    },
+    "CP_020": {
+        "campaign_id": "CP_020",
+        "campaign_business_id": "BS_005",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 154471,
+        "campaign_status": "active",
+        "campaign_start_date": "2024-10-30",
+        "campaign_end_date": "2025-01-11",
+        "campaign_creator_ids": [
+            "CR_017",
+            "CR_016",
+            "CR_014",
+            "CR_015",
+            "CR_018"
+        ]
+    },
+    "CP_021": {
+        "campaign_id": "CP_021",
+        "campaign_business_id": "BS_005",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 112570,
+        "campaign_status": "completed",
+        "campaign_start_date": "2026-04-27",
+        "campaign_end_date": "2026-07-21",
+        "campaign_creator_ids": [
+            "CR_017",
+            "CR_016",
+            "CR_018",
+            "CR_014",
+            "CR_013",
+            "CR_015"
+        ]
+    },
+    "CP_022": {
+        "campaign_id": "CP_022",
+        "campaign_business_id": "BS_005",
+        "campaign_domain": "Entertainment",
+        "campaign_budget": 115043,
+        "campaign_status": "draft",
+        "campaign_start_date": "2024-12-27",
+        "campaign_end_date": "2025-01-17",
+        "campaign_creator_ids": []
+    },
+    "CP_023": {
+        "campaign_id": "CP_023",
+        "campaign_business_id": "BS_006",
+        "campaign_domain": "Food",
+        "campaign_budget": 27826,
+        "campaign_status": "completed",
+        "campaign_start_date": "2025-02-21",
+        "campaign_end_date": "2025-03-15",
+        "campaign_creator_ids": [
+            "CR_033",
+            "CR_034",
+            "CR_036",
+            "CR_031",
+            "CR_032"
+        ]
+    },
+    "CP_024": {
+        "campaign_id": "CP_024",
+        "campaign_business_id": "BS_006",
+        "campaign_domain": "Food",
+        "campaign_budget": 27934,
+        "campaign_status": "completed",
+        "campaign_start_date": "2026-02-03",
+        "campaign_end_date": "2026-03-29",
+        "campaign_creator_ids": [
+            "CR_033",
+            "CR_034",
+            "CR_036",
+            "CR_031",
+            "CR_035"
+        ]
+    },
+    "CP_025": {
+        "campaign_id": "CP_025",
+        "campaign_business_id": "BS_006",
+        "campaign_domain": "Food",
+        "campaign_budget": 23363,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-05-04",
+        "campaign_end_date": "2025-07-15",
+        "campaign_creator_ids": [
+            "CR_033",
+            "CR_036",
+            "CR_032",
+            "CR_031"
+        ]
+    },
+    "CP_026": {
+        "campaign_id": "CP_026",
+        "campaign_business_id": "BS_006",
+        "campaign_domain": "Food",
+        "campaign_budget": 49322,
+        "campaign_status": "active",
+        "campaign_start_date": "2024-08-14",
+        "campaign_end_date": "2024-11-07",
+        "campaign_creator_ids": [
+            "CR_033",
+            "CR_035",
+            "CR_036",
+            "CR_032",
+            "CR_034"
+        ]
+    },
+    "CP_027": {
+        "campaign_id": "CP_027",
+        "campaign_business_id": "BS_006",
+        "campaign_domain": "Food",
+        "campaign_budget": 52242,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-11-01",
+        "campaign_end_date": "2026-01-08",
+        "campaign_creator_ids": [
+            "CR_032",
+            "CR_033"
+        ]
+    },
+    "CP_028": {
+        "campaign_id": "CP_028",
+        "campaign_business_id": "BS_007",
+        "campaign_domain": "Food",
+        "campaign_budget": 168069,
+        "campaign_status": "active",
+        "campaign_start_date": "2024-10-12",
+        "campaign_end_date": "2024-11-12",
+        "campaign_creator_ids": [
+            "CR_033",
+            "CR_036",
+            "CR_035",
+            "CR_034"
+        ]
+    },
+    "CP_029": {
+        "campaign_id": "CP_029",
+        "campaign_business_id": "BS_007",
+        "campaign_domain": "Food",
+        "campaign_budget": 63243,
+        "campaign_status": "draft",
+        "campaign_start_date": "2024-07-10",
+        "campaign_end_date": "2024-07-30",
+        "campaign_creator_ids": []
+    },
+    "CP_030": {
+        "campaign_id": "CP_030",
+        "campaign_business_id": "BS_007",
+        "campaign_domain": "Food",
+        "campaign_budget": 51153,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-08-06",
+        "campaign_end_date": "2025-10-13",
+        "campaign_creator_ids": [
+            "CR_033",
+            "CR_032",
+            "CR_035",
+            "CR_034",
+            "CR_036"
+        ]
+    },
+    "CP_031": {
+        "campaign_id": "CP_031",
+        "campaign_business_id": "BS_007",
+        "campaign_domain": "Food",
+        "campaign_budget": 100406,
+        "campaign_status": "completed",
+        "campaign_start_date": "2025-02-07",
+        "campaign_end_date": "2025-04-21",
+        "campaign_creator_ids": [
+            "CR_033",
+            "CR_034",
+            "CR_035",
+            "CR_031",
+            "CR_036"
+        ]
+    },
+    "CP_032": {
+        "campaign_id": "CP_032",
+        "campaign_business_id": "BS_007",
+        "campaign_domain": "Food",
+        "campaign_budget": 64529,
+        "campaign_status": "completed",
+        "campaign_start_date": "2026-01-23",
+        "campaign_end_date": "2026-02-07",
+        "campaign_creator_ids": [
+            "CR_032",
+            "CR_033",
+            "CR_036"
+        ]
+    },
+    "CP_033": {
+        "campaign_id": "CP_033",
+        "campaign_business_id": "BS_008",
+        "campaign_domain": "Education",
+        "campaign_budget": 78242,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-11-04",
+        "campaign_end_date": "2025-12-31",
+        "campaign_creator_ids": [
+            "CR_007",
+            "CR_008",
+            "CR_010",
+            "CR_011",
+            "CR_012",
+            "CR_009"
+        ]
+    },
+    "CP_034": {
+        "campaign_id": "CP_034",
+        "campaign_business_id": "BS_008",
+        "campaign_domain": "Education",
+        "campaign_budget": 49850,
+        "campaign_status": "completed",
+        "campaign_start_date": "2025-03-18",
+        "campaign_end_date": "2025-05-29",
+        "campaign_creator_ids": [
+            "CR_010",
+            "CR_007",
+            "CR_011",
+            "CR_012",
+            "CR_008"
+        ]
+    },
+    "CP_035": {
+        "campaign_id": "CP_035",
+        "campaign_business_id": "BS_008",
+        "campaign_domain": "Education",
+        "campaign_budget": 180225,
+        "campaign_status": "draft",
+        "campaign_start_date": "2026-02-03",
+        "campaign_end_date": "2026-03-22",
+        "campaign_creator_ids": []
+    },
+    "CP_036": {
+        "campaign_id": "CP_036",
+        "campaign_business_id": "BS_008",
+        "campaign_domain": "Education",
+        "campaign_budget": 212918,
+        "campaign_status": "active",
+        "campaign_start_date": "2025-05-10",
+        "campaign_end_date": "2025-06-06",
+        "campaign_creator_ids": [
+            "CR_007",
+            "CR_008",
+            "CR_011",
+            "CR_009",
+            "CR_010",
+            "CR_012"
+        ]
+    },
+    "CP_037": {
+        "campaign_id": "CP_037",
+        "campaign_business_id": "BS_008",
+        "campaign_domain": "Education",
+        "campaign_budget": 208637,
+        "campaign_status": "draft",
+        "campaign_start_date": "2026-01-09",
+        "campaign_end_date": "2026-03-28",
+        "campaign_creator_ids": []
+    },
+    "CP_038": {
+        "campaign_id": "CP_038",
+        "campaign_business_id": "BS_008",
+        "campaign_domain": "Education",
+        "campaign_budget": 190394,
+        "campaign_status": "completed",
+        "campaign_start_date": "2024-08-24",
+        "campaign_end_date": "2024-09-27",
+        "campaign_creator_ids": [
+            "CR_007",
+            "CR_008",
+            "CR_012",
+            "CR_011",
+            "CR_010",
+            "CR_009"
+        ]
+    },
+    "CP_039": {
+        "campaign_id": "CP_039",
+        "campaign_business_id": "BS_008",
+        "campaign_domain": "Education",
+        "campaign_budget": 133975,
+        "campaign_status": "active",
+        "campaign_start_date": "2026-03-06",
+        "campaign_end_date": "2026-06-04",
+        "campaign_creator_ids": [
+            "CR_010",
+            "CR_007",
+            "CR_008",
+            "CR_012",
+            "CR_009"
+        ]
+    }
+}
