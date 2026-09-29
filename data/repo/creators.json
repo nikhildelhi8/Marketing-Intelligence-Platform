@@ -1,0 +1,578 @@
+{
+    "CR_001": {
+        "creator_id": "CR_001",
+        "creator_name": "Danielle Taylor",
+        "creator_bio": "Business creator passinate about sharing daily insights and tips",
+        "creator_niche": "Business",
+        "creator_tier": "Nano",
+        "creator_follower_count": 2179
+    },
+    "CR_002": {
+        "creator_id": "CR_002",
+        "creator_name": "Allen Robinson",
+        "creator_bio": "Business creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Business",
+        "creator_tier": "Nano",
+        "creator_follower_count": 8779
+    },
+    "CR_003": {
+        "creator_id": "CR_003",
+        "creator_name": "Matthew Gardner",
+        "creator_bio": "Business creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Business",
+        "creator_tier": "Nano",
+        "creator_follower_count": 4111
+    },
+    "CR_004": {
+        "creator_id": "CR_004",
+        "creator_name": "Sean Blake",
+        "creator_bio": "Business creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Business",
+        "creator_tier": "Macro",
+        "creator_follower_count": 183708
+    },
+    "CR_005": {
+        "creator_id": "CR_005",
+        "creator_name": "Daniel Gallagher",
+        "creator_bio": "Business creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Business",
+        "creator_tier": "Macro",
+        "creator_follower_count": 153588
+    },
+    "CR_006": {
+        "creator_id": "CR_006",
+        "creator_name": "Ryan Munoz",
+        "creator_bio": "Business creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Business",
+        "creator_tier": "Nano",
+        "creator_follower_count": 1211
+    },
+    "CR_007": {
+        "creator_id": "CR_007",
+        "creator_name": "Thomas Miller",
+        "creator_bio": "Education creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Education",
+        "creator_tier": "Macro",
+        "creator_follower_count": 253710
+    },
+    "CR_008": {
+        "creator_id": "CR_008",
+        "creator_name": "Benjamin Stanley",
+        "creator_bio": "Education creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Education",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 68966
+    },
+    "CR_009": {
+        "creator_id": "CR_009",
+        "creator_name": "Jamie Chavez",
+        "creator_bio": "Education creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Education",
+        "creator_tier": "Nano",
+        "creator_follower_count": 6477
+    },
+    "CR_010": {
+        "creator_id": "CR_010",
+        "creator_name": "Michael Miles",
+        "creator_bio": "Education creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Education",
+        "creator_tier": "Micro",
+        "creator_follower_count": 14680
+    },
+    "CR_011": {
+        "creator_id": "CR_011",
+        "creator_name": "Carla Gray",
+        "creator_bio": "Education creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Education",
+        "creator_tier": "Micro",
+        "creator_follower_count": 46501
+    },
+    "CR_012": {
+        "creator_id": "CR_012",
+        "creator_name": "Patty Perez",
+        "creator_bio": "Education creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Education",
+        "creator_tier": "Micro",
+        "creator_follower_count": 12104
+    },
+    "CR_013": {
+        "creator_id": "CR_013",
+        "creator_name": "Daniel Hahn",
+        "creator_bio": "Entertainment creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Entertainment",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 97050
+    },
+    "CR_014": {
+        "creator_id": "CR_014",
+        "creator_name": "Jennifer Rocha",
+        "creator_bio": "Entertainment creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Entertainment",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 80072
+    },
+    "CR_015": {
+        "creator_id": "CR_015",
+        "creator_name": "Patrick Ryan",
+        "creator_bio": "Entertainment creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Entertainment",
+        "creator_tier": "Micro",
+        "creator_follower_count": 48312
+    },
+    "CR_016": {
+        "creator_id": "CR_016",
+        "creator_name": "Daniel Bright",
+        "creator_bio": "Entertainment creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Entertainment",
+        "creator_tier": "Macro",
+        "creator_follower_count": 367139
+    },
+    "CR_017": {
+        "creator_id": "CR_017",
+        "creator_name": "Shannon Hernandez",
+        "creator_bio": "Entertainment creator passinate about sharing daily insights and tips",
+        "creator_niche": "Entertainment",
+        "creator_tier": "Macro",
+        "creator_follower_count": 183877
+    },
+    "CR_018": {
+        "creator_id": "CR_018",
+        "creator_name": "James Ferrell",
+        "creator_bio": "Entertainment creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Entertainment",
+        "creator_tier": "Macro",
+        "creator_follower_count": 377409
+    },
+    "CR_019": {
+        "creator_id": "CR_019",
+        "creator_name": "Alexandra Le",
+        "creator_bio": "Fashion creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Fashion",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 94677
+    },
+    "CR_020": {
+        "creator_id": "CR_020",
+        "creator_name": "Jeffrey Chavez",
+        "creator_bio": "Fashion creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Fashion",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 97324
+    },
+    "CR_021": {
+        "creator_id": "CR_021",
+        "creator_name": "Katie Rodriguez",
+        "creator_bio": "Fashion creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Fashion",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 90980
+    },
+    "CR_022": {
+        "creator_id": "CR_022",
+        "creator_name": "Brittany Farmer",
+        "creator_bio": "Fashion creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Fashion",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 85349
+    },
+    "CR_023": {
+        "creator_id": "CR_023",
+        "creator_name": "Alec Hickman",
+        "creator_bio": "Fashion creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Fashion",
+        "creator_tier": "Nano",
+        "creator_follower_count": 5538
+    },
+    "CR_024": {
+        "creator_id": "CR_024",
+        "creator_name": "Keith Miller",
+        "creator_bio": "Fashion creator passinate about sharing daily insights and tips",
+        "creator_niche": "Fashion",
+        "creator_tier": "Micro",
+        "creator_follower_count": 41850
+    },
+    "CR_025": {
+        "creator_id": "CR_025",
+        "creator_name": "Betty Alvarez",
+        "creator_bio": "Fitness creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Fitness",
+        "creator_tier": "Nano",
+        "creator_follower_count": 9507
+    },
+    "CR_026": {
+        "creator_id": "CR_026",
+        "creator_name": "Lisa Brandt",
+        "creator_bio": "Fitness creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Fitness",
+        "creator_tier": "Micro",
+        "creator_follower_count": 45344
+    },
+    "CR_027": {
+        "creator_id": "CR_027",
+        "creator_name": "Michael Brooks",
+        "creator_bio": "Fitness creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Fitness",
+        "creator_tier": "Micro",
+        "creator_follower_count": 43920
+    },
+    "CR_028": {
+        "creator_id": "CR_028",
+        "creator_name": "Austin Smith",
+        "creator_bio": "Fitness creator passinate about sharing daily insights and tips",
+        "creator_niche": "Fitness",
+        "creator_tier": "Macro",
+        "creator_follower_count": 390415
+    },
+    "CR_029": {
+        "creator_id": "CR_029",
+        "creator_name": "Benjamin Welch",
+        "creator_bio": "Fitness creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Fitness",
+        "creator_tier": "Micro",
+        "creator_follower_count": 25004
+    },
+    "CR_030": {
+        "creator_id": "CR_030",
+        "creator_name": "Andrea Young",
+        "creator_bio": "Fitness creator passinate about sharing daily insights and tips",
+        "creator_niche": "Fitness",
+        "creator_tier": "Nano",
+        "creator_follower_count": 8453
+    },
+    "CR_031": {
+        "creator_id": "CR_031",
+        "creator_name": "Timothy Duncan",
+        "creator_bio": "Food creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Food",
+        "creator_tier": "Micro",
+        "creator_follower_count": 40977
+    },
+    "CR_032": {
+        "creator_id": "CR_032",
+        "creator_name": "Cheryl Davis",
+        "creator_bio": "Food creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Food",
+        "creator_tier": "Micro",
+        "creator_follower_count": 38250
+    },
+    "CR_033": {
+        "creator_id": "CR_033",
+        "creator_name": "Scott Brown",
+        "creator_bio": "Food creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Food",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 92825
+    },
+    "CR_034": {
+        "creator_id": "CR_034",
+        "creator_name": "Gerald Hensley",
+        "creator_bio": "Food creator passinate about sharing daily insights and tips",
+        "creator_niche": "Food",
+        "creator_tier": "Nano",
+        "creator_follower_count": 4573
+    },
+    "CR_035": {
+        "creator_id": "CR_035",
+        "creator_name": "Brenda White",
+        "creator_bio": "Food creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Food",
+        "creator_tier": "Micro",
+        "creator_follower_count": 40319
+    },
+    "CR_036": {
+        "creator_id": "CR_036",
+        "creator_name": "Scott Pierce",
+        "creator_bio": "Food creator passinate about sharing daily insights and tips",
+        "creator_niche": "Food",
+        "creator_tier": "Micro",
+        "creator_follower_count": 13316
+    },
+    "CR_037": {
+        "creator_id": "CR_037",
+        "creator_name": "Sarah Martin",
+        "creator_bio": "Gaming creator passinate about sharing daily insights and tips",
+        "creator_niche": "Gaming",
+        "creator_tier": "Nano",
+        "creator_follower_count": 8456
+    },
+    "CR_038": {
+        "creator_id": "CR_038",
+        "creator_name": "Stephanie Martin",
+        "creator_bio": "Gaming creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Gaming",
+        "creator_tier": "Macro",
+        "creator_follower_count": 101131
+    },
+    "CR_039": {
+        "creator_id": "CR_039",
+        "creator_name": "Rachel Mitchell",
+        "creator_bio": "Gaming creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Gaming",
+        "creator_tier": "Macro",
+        "creator_follower_count": 465215
+    },
+    "CR_040": {
+        "creator_id": "CR_040",
+        "creator_name": "Daniel Brown",
+        "creator_bio": "Gaming creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Gaming",
+        "creator_tier": "Macro",
+        "creator_follower_count": 485739
+    },
+    "CR_041": {
+        "creator_id": "CR_041",
+        "creator_name": "Kevin Shaw",
+        "creator_bio": "Gaming creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Gaming",
+        "creator_tier": "Nano",
+        "creator_follower_count": 9201
+    },
+    "CR_042": {
+        "creator_id": "CR_042",
+        "creator_name": "Angela Lopez",
+        "creator_bio": "Gaming creator passinate about sharing daily insights and tips",
+        "creator_niche": "Gaming",
+        "creator_tier": "Micro",
+        "creator_follower_count": 48997
+    },
+    "CR_043": {
+        "creator_id": "CR_043",
+        "creator_name": "Todd Hudson",
+        "creator_bio": "Health creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Health",
+        "creator_tier": "Nano",
+        "creator_follower_count": 9985
+    },
+    "CR_044": {
+        "creator_id": "CR_044",
+        "creator_name": "Matthew Cunningham",
+        "creator_bio": "Health creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Health",
+        "creator_tier": "Nano",
+        "creator_follower_count": 5683
+    },
+    "CR_045": {
+        "creator_id": "CR_045",
+        "creator_name": "Emily Baker",
+        "creator_bio": "Health creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Health",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 58578
+    },
+    "CR_046": {
+        "creator_id": "CR_046",
+        "creator_name": "Paul Jones",
+        "creator_bio": "Health creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Health",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 80035
+    },
+    "CR_047": {
+        "creator_id": "CR_047",
+        "creator_name": "Katie Anderson",
+        "creator_bio": "Health creator passinate about sharing daily insights and tips",
+        "creator_niche": "Health",
+        "creator_tier": "Nano",
+        "creator_follower_count": 6218
+    },
+    "CR_048": {
+        "creator_id": "CR_048",
+        "creator_name": "Christopher Bass",
+        "creator_bio": "Health creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Health",
+        "creator_tier": "Nano",
+        "creator_follower_count": 5456
+    },
+    "CR_049": {
+        "creator_id": "CR_049",
+        "creator_name": "Matthew Mcmillan",
+        "creator_bio": "Lifestyle creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Lifestyle",
+        "creator_tier": "Nano",
+        "creator_follower_count": 2700
+    },
+    "CR_050": {
+        "creator_id": "CR_050",
+        "creator_name": "Natalie Moore",
+        "creator_bio": "Lifestyle creator passinate about sharing daily insights and tips",
+        "creator_niche": "Lifestyle",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 68466
+    },
+    "CR_051": {
+        "creator_id": "CR_051",
+        "creator_name": "Mark Baker",
+        "creator_bio": "Lifestyle creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Lifestyle",
+        "creator_tier": "Micro",
+        "creator_follower_count": 42017
+    },
+    "CR_052": {
+        "creator_id": "CR_052",
+        "creator_name": "Jeff Hill",
+        "creator_bio": "Lifestyle creator passinate about sharing daily insights and tips",
+        "creator_niche": "Lifestyle",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 50233
+    },
+    "CR_053": {
+        "creator_id": "CR_053",
+        "creator_name": "Deborah Figueroa",
+        "creator_bio": "Lifestyle creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Lifestyle",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 86155
+    },
+    "CR_054": {
+        "creator_id": "CR_054",
+        "creator_name": "Benjamin Ware",
+        "creator_bio": "Lifestyle creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Lifestyle",
+        "creator_tier": "Macro",
+        "creator_follower_count": 178148
+    },
+    "CR_055": {
+        "creator_id": "CR_055",
+        "creator_name": "Brittany Anderson",
+        "creator_bio": "Sports creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Sports",
+        "creator_tier": "Nano",
+        "creator_follower_count": 5550
+    },
+    "CR_056": {
+        "creator_id": "CR_056",
+        "creator_name": "Christine Wright",
+        "creator_bio": "Sports creator passinate about sharing daily insights and tips",
+        "creator_niche": "Sports",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 56737
+    },
+    "CR_057": {
+        "creator_id": "CR_057",
+        "creator_name": "Jennifer Oliver",
+        "creator_bio": "Sports creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Sports",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 60129
+    },
+    "CR_058": {
+        "creator_id": "CR_058",
+        "creator_name": "Rita Keith",
+        "creator_bio": "Sports creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Sports",
+        "creator_tier": "Micro",
+        "creator_follower_count": 11625
+    },
+    "CR_059": {
+        "creator_id": "CR_059",
+        "creator_name": "Jennifer Santiago",
+        "creator_bio": "Sports creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Sports",
+        "creator_tier": "Micro",
+        "creator_follower_count": 26264
+    },
+    "CR_060": {
+        "creator_id": "CR_060",
+        "creator_name": "Ashley Brennan",
+        "creator_bio": "Sports creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Sports",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 80848
+    },
+    "CR_061": {
+        "creator_id": "CR_061",
+        "creator_name": "Julia Torres",
+        "creator_bio": "Technology creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Technology",
+        "creator_tier": "Micro",
+        "creator_follower_count": 24916
+    },
+    "CR_062": {
+        "creator_id": "CR_062",
+        "creator_name": "Jennifer Ramirez",
+        "creator_bio": "Technology creator passinate about sharing daily insights and tips",
+        "creator_niche": "Technology",
+        "creator_tier": "Micro",
+        "creator_follower_count": 14550
+    },
+    "CR_063": {
+        "creator_id": "CR_063",
+        "creator_name": "Jennifer Zavala",
+        "creator_bio": "Technology creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Technology",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 85142
+    },
+    "CR_064": {
+        "creator_id": "CR_064",
+        "creator_name": "Wesley White",
+        "creator_bio": "Technology creator passinate about sharing daily insights and tips",
+        "creator_niche": "Technology",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 67398
+    },
+    "CR_065": {
+        "creator_id": "CR_065",
+        "creator_name": "Haley Hartman",
+        "creator_bio": "Technology creator passinate about sharing daily insights and tips",
+        "creator_niche": "Technology",
+        "creator_tier": "Nano",
+        "creator_follower_count": 7649
+    },
+    "CR_066": {
+        "creator_id": "CR_066",
+        "creator_name": "Cheryl Williams",
+        "creator_bio": "Technology creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Technology",
+        "creator_tier": "Nano",
+        "creator_follower_count": 7644
+    },
+    "CR_067": {
+        "creator_id": "CR_067",
+        "creator_name": "Kimberly Ball",
+        "creator_bio": "Travel creator passinate about breaking down complex ideas into simple steps",
+        "creator_niche": "Travel",
+        "creator_tier": "Nano",
+        "creator_follower_count": 3728
+    },
+    "CR_068": {
+        "creator_id": "CR_068",
+        "creator_name": "Matthew Rivera",
+        "creator_bio": "Travel creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Travel",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 70573
+    },
+    "CR_069": {
+        "creator_id": "CR_069",
+        "creator_name": "Mary Nguyen",
+        "creator_bio": "Travel creator passinate about building a community of passionate enthusiasts",
+        "creator_niche": "Travel",
+        "creator_tier": "Nano",
+        "creator_follower_count": 5344
+    },
+    "CR_070": {
+        "creator_id": "CR_070",
+        "creator_name": "Todd Byrd",
+        "creator_bio": "Travel creator passinate about exploring the latest trends and future outlooks",
+        "creator_niche": "Travel",
+        "creator_tier": "Micro",
+        "creator_follower_count": 21406
+    },
+    "CR_071": {
+        "creator_id": "CR_071",
+        "creator_name": "April Mitchell",
+        "creator_bio": "Travel creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Travel",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 78174
+    },
+    "CR_072": {
+        "creator_id": "CR_072",
+        "creator_name": "Michael Dixon",
+        "creator_bio": "Travel creator passinate about creating engaging content and deep-dives",
+        "creator_niche": "Travel",
+        "creator_tier": "Mid-tier",
+        "creator_follower_count": 98232
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "BS_001": {
+        "business_id": "BS_001",
+        "business_name": "Rodriguez, Figueroa and Sanchez",
+        "business_domain": "Entertainment",
+        "business_budget": 140000
+    },
+    "BS_002": {
+        "business_id": "BS_002",
+        "business_name": "Yang, Gardner and Garza",
+        "business_domain": "Business",
+        "business_budget": 45000
+    },
+    "BS_003": {
+        "business_id": "BS_003",
+        "business_name": "Robinson PLC",
+        "business_domain": "Sports",
+        "business_budget": 40000
+    },
+    "BS_004": {
+        "business_id": "BS_004",
+        "business_name": "Gonzalez, Santos and Gardner",
+        "business_domain": "Fashion",
+        "business_budget": 580000
+    },
+    "BS_005": {
+        "business_id": "BS_005",
+        "business_name": "Ramirez, Booth and Blake",
+        "business_domain": "Entertainment",
+        "business_budget": 550000
+    },
+    "BS_006": {
+        "business_id": "BS_006",
+        "business_name": "Ramirez-Lewis",
+        "business_domain": "Food",
+        "business_budget": 140000
+    },
+    "BS_007": {
+        "business_id": "BS_007",
+        "business_name": "James LLC",
+        "business_domain": "Food",
+        "business_budget": 345000
+    },
+    "BS_008": {
+        "business_id": "BS_008",
+        "business_name": "Blair PLC",
+        "business_domain": "Education",
+        "business_budget": 490000
+    }
+}
