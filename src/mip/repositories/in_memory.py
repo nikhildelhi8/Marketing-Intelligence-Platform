@@ -10,7 +10,7 @@ class InMemoryRepo(Generic[T]) :
 
     def __init__(self , get_id: Callable[[T] , str]) :
 
-        self.get_id  = get_id 
+        self.get_id  = get_id  
         self._data : dict[str , T] = {}
 
 
@@ -85,6 +85,8 @@ class InMemoryRepo(Generic[T]) :
             )
 
         del self._data[entity_id]
+        
+
 
 
 

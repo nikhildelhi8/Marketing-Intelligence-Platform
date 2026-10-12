@@ -14,3 +14,6 @@ class NotFoundError(MIPError):
 
 class DuplicateError(MIPError):
     pass
+
+class BusinessRuleError(MIPError):
+    pass
