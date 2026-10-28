@@ -11,4 +11,17 @@ def validate_budget(value: int) -> int :
 
     return value 
 
+
+def positive_folower_count(value: int) -> int :
+
+    if value <= 0 :
+        raise ValueError(f"Follower count must be positive , got {value}")
+
+    return value
+
+
+
+
 PositiveBudget = Annotated[int , AfterValidator(validate_budget)]
+PositiveFollowerCount = Annotated[int , AfterValidator(positive_folower_count)]
+

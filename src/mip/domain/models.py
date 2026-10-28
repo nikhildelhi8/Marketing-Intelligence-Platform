@@ -1,11 +1,6 @@
-from dataclasses import dataclass , field  , asdict
-from mip.domain.enums import Platform , ContentType , Category , CreatorTier , CampaignStatus
-from mip import PROJECT_ROOT
-import json
-from pprint import pprint
+from dataclasses import asdict, dataclass, field
 
-
-
+from mip.domain.enums import CampaignStatus, Category, ContentType, CreatorTier, Platform
 
 # {
 #       "business_id": "BS_001",
@@ -329,6 +324,19 @@ class CampaignAnalytics :
             "avg_engagement_rate": self.avg_engagement_rate,
         }
 
+    @classmethod
+    def from_dict(cls, data: dict) -> "CampaignAnalytics":
+        return cls(
+            campaign_id=data["campaign_id"],
+            total_posts_attached_to_campaign=data["total_posts_attached_to_campaign"],
+            total_views=data["total_views"],
+            total_likes=data["total_likes"],
+            total_comments=data["total_comments"],
+            total_shares=data["total_shares"],
+            total_saves=data["total_saves"],
+            avg_engagement_rate=data["avg_engagement_rate"],
+        )
+
 
 
 
@@ -351,7 +359,6 @@ class CampaignAnalytics :
             
 
         
-
 
 
 

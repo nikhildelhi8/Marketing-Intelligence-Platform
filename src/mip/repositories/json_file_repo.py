@@ -39,7 +39,7 @@ class JsonFileRepo(Generic[T]):
         with open(self.path , 'r') as f :
 
             try :
-                loaded_json = json.load(f)
+                loaded_json = json.load(f) 
             
             except  json.JSONDecodeError as e :
                 raise RepositoryError(
@@ -86,7 +86,7 @@ class JsonFileRepo(Generic[T]):
         json_safe_dict = {}
 
         for entity_id , entity in self._data.items():
-
+  
             try:
                 json_safe_dict[entity_id] = self.to_dict(entity)
 

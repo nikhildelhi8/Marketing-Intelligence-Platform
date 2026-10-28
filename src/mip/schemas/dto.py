@@ -9,7 +9,7 @@ from mip.domain.enums import (
     Platform,
     ContentType,
 )
-from mip.schemas.shared_validators import PositiveBudget
+from mip.schemas.shared_validators import PositiveBudget , PositiveFollowerCount
 
 
 
@@ -35,7 +35,7 @@ class CreateCreatorDTO(BaseModel):
     creator_bio: str
     creator_niche: Category
     creator_tier: CreatorTier
-    creator_follower_count: int
+    creator_follower_count: PositiveFollowerCount
 
 class CreateSocialPostDTO(BaseModel):
     timestamp: datetime | None
