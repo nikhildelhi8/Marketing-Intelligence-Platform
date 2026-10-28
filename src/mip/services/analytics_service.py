@@ -31,7 +31,8 @@ class AnalyticsService:
         self._analytics_repo = analytics_repo
 
     def calculate_campaign_analytics(self, campaign_id: str) -> CampaignAnalytics:
-        #self._campaign_repo.get_or_raise(campaign_id)
+        
+        self._campaign_repo.get_or_raise(campaign_id)
         campaign_posts = [
             post
             for post in self._social_post_repo.list()
